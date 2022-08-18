@@ -1,0 +1,4 @@
+.cph/
+.DS_Store
+*.bin
+main
