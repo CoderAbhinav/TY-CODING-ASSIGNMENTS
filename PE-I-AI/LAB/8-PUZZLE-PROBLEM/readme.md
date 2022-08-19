@@ -5,7 +5,6 @@
 ```
 #include "PUZZLE/state.h"
 #include "PUZZLE/puzzle.h"
-
 ```
 
 2. Create the initial and final state
@@ -51,7 +50,7 @@ getNumberOfMoves() -> return moves required
 
 ## OUTPUT
 ```
-GENERATED STATES: 73.
+GENERATED STATES: 122.
 EXPLORED STATES: 73.
 NUMBER OF MOVES REQUIRED : 7.
 

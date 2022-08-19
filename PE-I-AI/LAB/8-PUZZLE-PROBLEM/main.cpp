@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
 
     vector<State> moves = p.getMoves();
 
-    cout << "GENERATED STATES: " << p.getExploredStates() << ".\n";
+    cout << "GENERATED STATES: " << p.getGeneratedStates() << ".\n";
     cout << "EXPLORED STATES: " << p.getExploredStates() << ".\n";
     cout << "NUMBER OF MOVES REQUIRED : " << p.getNumberOfMoves() << ".\n";
     cout << "\n\n\n";
