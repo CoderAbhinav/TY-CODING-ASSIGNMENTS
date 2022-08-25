@@ -43,6 +43,7 @@ public:
     void setMove(std::string);
     static std::string generateKey(std::vector<std::vector<int> >&);
     friend std::ostream& operator<<(std::ostream&, State);
+    friend int heuristics(State, State);
 };
 
 void State::validate() {
@@ -187,4 +188,14 @@ std::ostream& operator<<(std::ostream& os, State st) {
     << "\n}" ;
 
     return os;
+}
+
+int heuristics(State current, State target) {
+    int score = 0;
+
+    for (int i = 0; i < current.key.length(); i++) {
+        if (current.key[i] != target.key[i]) score++;
+    }
+
+    return score;
 }

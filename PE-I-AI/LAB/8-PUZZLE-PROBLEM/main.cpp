@@ -2,6 +2,8 @@
 #include <vector>
 #include "PUZZLE/state.h"
 #include "PUZZLE/puzzle.h"
+#include "PUZZLE/PuzzleSolverAStarAlgorithm.h"
+
 using namespace std;
 
 vector<vector<int> > takeMatrix(int rows, int cols) {
@@ -24,7 +26,8 @@ int main(int argc, char const *argv[])
     vector<vector<int> > inm =  takeMatrix(3, 3);
     vector<vector<int> > fnm =  takeMatrix(3, 3);
 
-    PuzzleSolver p(new State(inm), new State(fnm));
+    // PuzzleSolver p(new State(inm), new State(fnm));
+    PuzzleSolverAStarAlgorithm p(new State(inm), new State(fnm));
 
     vector<State> moves = p.getMoves();
 

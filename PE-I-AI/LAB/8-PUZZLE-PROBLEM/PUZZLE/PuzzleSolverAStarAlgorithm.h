@@ -6,8 +6,7 @@
 #include <string>
 #include "state.h"
 
-
-class PuzzleSolver
+class PuzzleSolverAStarAlgorithm
 {
 private:
     State *initial, *final;
@@ -15,13 +14,13 @@ private:
     std::vector<State> required_moves;
     int explored_states, generated_states;
 
+    void buildPath(State*);
 
     void Solve();
     void validate();
     std::vector<State> generateMoves();
-
 public:
-    PuzzleSolver(State*, State*);
+    PuzzleSolverAStarAlgorithm(State*, State*);
 
     std::vector<State> getMoves();
     int getExploredStates();
@@ -29,51 +28,45 @@ public:
     int getNumberOfMoves();
 };
 
-PuzzleSolver::PuzzleSolver(State* initialState, State* finalState) {
+PuzzleSolverAStarAlgorithm::PuzzleSolverAStarAlgorithm(State* initialState, State* finalState)
+{
     this->initial = initialState;
     this->final = finalState;
     this->explored_states = 0;
     this->generated_states = 0;
     Solve();
     this->required_moves = generateMoves();
+}
+
+void PuzzleSolverAStarAlgorithm::validate() {
 
 }
 
-void PuzzleSolver::validate() {
+void PuzzleSolverAStarAlgorithm::buildPath(State* curr) {
+    // std::cout << *curr;
+    stateMap[curr->getKey()] = curr;
+    if (curr->getKey() == final->getKey()) return;
+    this->explored_states++;
+    std::vector<State*> childrens = curr->getChildren();
+    int eval = 1 + heuristics(*curr, *final);
+    State* selection = childrens[0];
 
-}
-
-void PuzzleSolver::Solve() {
-    int exploredState = 0;
-    std::queue<State*> q;
-    q.push(initial);
-    stateMap[initial->getKey()] = initial;
-
-    while (q.size())
-    {
-        this->explored_states++;
-        State* curr = q.front();
-        q.pop();
-        
-        if (curr->getKey() == final->getKey()) {
-            break;
-        }
-
-        std::vector<State*> children = curr->getChildren();
-
-        for (int i = 0; i < children.size(); i++) {
-            if (stateMap.count(children[i]->getKey()) == 0) {
-                q.push(children[i]);
-                stateMap[children[i]->getKey()] = children[i];
-                this->generated_states++;
-            }
+    for (int i = 1; i < childrens.size(); i++) {
+        int curr_eval = 1 + heuristics(*childrens[i], *final);
+        this->generated_states++;
+        if (curr_eval < eval) {
+            selection = childrens[i];
         }
     }
+
+    buildPath(selection);
 }
 
+void PuzzleSolverAStarAlgorithm::Solve() {
+    buildPath(initial);
+}
 
-
-std::vector<State> PuzzleSolver::generateMoves() {
+std::vector<State> PuzzleSolverAStarAlgorithm::generateMoves() {
     State* temp = stateMap[final->getKey()];
     std::vector<State> ans;
     while (temp->getParentKey() != "-1")
@@ -89,18 +82,18 @@ std::vector<State> PuzzleSolver::generateMoves() {
     return ans;
 }
 
-std::vector<State> PuzzleSolver::getMoves() {
+std::vector<State> PuzzleSolverAStarAlgorithm::getMoves() {
     return this->required_moves;
 }
 
-int PuzzleSolver::getExploredStates() {
+int PuzzleSolverAStarAlgorithm::getExploredStates() {
     return this->explored_states;
 }
 
-int PuzzleSolver::getGeneratedStates() {
+int PuzzleSolverAStarAlgorithm::getGeneratedStates() {
     return this->generated_states;
 }
 
-int PuzzleSolver::getNumberOfMoves() {
+int PuzzleSolverAStarAlgorithm::getNumberOfMoves() {
     return this->required_moves.size();
 }
