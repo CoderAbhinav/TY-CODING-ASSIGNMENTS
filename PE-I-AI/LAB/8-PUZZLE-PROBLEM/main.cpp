@@ -29,16 +29,16 @@ int main(int argc, char const *argv[])
     // PuzzleSolver p(new State(inm), new State(fnm));
     PuzzleSolverAStarAlgorithm p(new State(inm), new State(fnm));
 
-    vector<State> moves = p.getMoves();
+    // vector<State> moves = p.getMoves();
 
-    cout << "GENERATED STATES: " << p.getGeneratedStates() << ".\n";
-    cout << "EXPLORED STATES: " << p.getExploredStates() << ".\n";
-    cout << "NUMBER OF MOVES REQUIRED : " << p.getNumberOfMoves() << ".\n";
-    cout << "\n\n\n";
+    // cout << "GENERATED STATES: " << p.getGeneratedStates() << ".\n";
+    // cout << "EXPLORED STATES: " << p.getExploredStates() << ".\n";
+    // cout << "NUMBER OF MOVES REQUIRED : " << p.getNumberOfMoves() << ".\n";
+    // cout << "\n\n\n";
 
-    for (int i =0 ; i < moves.size(); i++) {
-        cout << moves[i] << "\n\n\n";
-    }
+    // for (int i =0 ; i < moves.size(); i++) {
+    //     cout << moves[i] << "\n\n\n";
+    // }
 
     return 0;
 }

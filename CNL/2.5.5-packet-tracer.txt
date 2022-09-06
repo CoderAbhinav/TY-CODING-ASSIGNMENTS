@@ -1,0 +1,202 @@
+%SYS-5-CONFIG_I: Configured from console by console
+
+S1#exit
+
+
+
+
+
+
+
+
+
+S1 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+User Access Verification
+
+Password: 
+
+S1>enable
+S1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#enable password c1$c0
+S1(config)#exit
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+S1#exit
+
+
+
+
+
+
+
+
+
+S1 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+User Access Verification
+
+Password: 
+Password: 
+
+S1>show running-config
+        ^
+% Invalid input detected at '^' marker.
+	
+S1>enable
+Password: 
+Password: 
+S1#show running-config
+Building configuration...
+
+Current configuration : 1131 bytes
+!
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname S1
+!
+!
+enable password c1$c0
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+
+S1#
+S1#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#enable secret itsasecret
+S1(config)#exit
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+S1#show run
+Building configuration...
+
+Current configuration : 1178 bytes
+!
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname S1
+!
+!
+enable secret 5 $1$mERr$ILwq/b7kc.7X/ejA4Aosn0
+enable password c1$c0
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+
+S1#
+S1#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#service password-encryption
+S1(config)#exit
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+S1#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#banner motd "This is a secure system.Authorized Access Only!"
+S1(config)#exit
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+S1#exit
+
+
+
+
+
+
+
+
+
+S1 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+This is a secure system.Authorized Access Only!
+
+User Access Verification
+
+Password: 
+
+S1>enable
+Password: 
+Password: 
+Password: 
+S1#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]

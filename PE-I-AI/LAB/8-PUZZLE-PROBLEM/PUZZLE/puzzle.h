@@ -102,5 +102,5 @@ int PuzzleSolver::getGeneratedStates() {
 }
 
 int PuzzleSolver::getNumberOfMoves() {
-    return this->required_moves.size();
+    return this->required_moves.size() - 1;
 }
