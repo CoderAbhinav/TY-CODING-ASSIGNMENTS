@@ -1,4 +1,5 @@
 .cph/
 .DS_Store
 *.bin
+*.pyc
 main
